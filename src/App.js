@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Results from "./components/Results/Results";
+import getSoccerResults from "./services/Api.js";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [soccerResults, setSoccerResults] = useState([]);
+
+  useEffect(() => {
+    getSoccerResults().then((res) => setSoccerResults(res.schedules));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container-fluid">
+      <h1>Soccer Results</h1>
+      <Results soccerResults={soccerResults}></Results>
     </div>
   );
 }

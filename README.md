@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+Step 1: Display results table
+Example API endpoint that could be used:
+https://developer.sportradar.com/soccer/reference/soccer-season-schedule
+Description:
+·Table should be divided into 2 columns
+·In the first column display Team Names
+·In the second column display result
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Step 2: Display more information in the results table
+Description:
+·Add new columns to your table with match date, half time score, and
+stadium name
+·Move team names into separate columns
+·Make team name cell background different depending on result
+oRed – if team lost
+oGreen – if team won
+oOrange – if match ended in a draw
 
-## Available Scripts
+Step 3: Add season filter to results table
+Description:
+·Add „Seasons” dropdown above results table
+·Dropdown options can be fetched from the API endpoint, for example:
+ohttps://developer.sportradar.com/soccer/reference/soccer-  
+competition-seasons
+·Or hardcoded, example:
+osr:season:67233 - Ekstraklasa 19/20
+osr:season:77453 - Ekstraklasa 20/21
+osr:season: 84320 - Ekstraklasa 21/22
+·Reload results table on dropdown change using endpoint from step 1
 
-In the project directory, you can run:
+Step 4: Match info sub page
+Description:
+·When clicking on matches table row, user should be redirected to a
+new match info sub page
+·Use endpoint below to fetch match info, for example:
+https://developer.sportradar.com/soccer/reference/soccer-sport-event-
+timeline
+o:sport_event_id – you will find ID in the endpoint from Step 1
+·On a subpage display data about a match, teams, result, and data in
+Timeline property
+·Use your CSS skills to display match data in a nice way
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Step 5: Add any new features by your choice
+Description:
+In this step you’re free to add whatever features you like, think about
+refactoring, style improvements, use of another endpoints, etc
