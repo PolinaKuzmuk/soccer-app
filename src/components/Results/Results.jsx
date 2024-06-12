@@ -1,17 +1,18 @@
 import React from "react";
 
-function Results({ soccerResults }) {
-  const getBackgroundColor = (scoreTeam1, scoreTeam2) => {
-    if (scoreTeam1 !== undefined) {
-      if (scoreTeam1 > scoreTeam2) {
-        return "green"; // Win
-      } else if (scoreTeam1 < scoreTeam2) {
-        return "red"; // Lose
-      } else if (scoreTeam1 === scoreTeam2) {
-        return "orange"; // Draw
-      }
+const getBackgroundColor = (scoreTeam1, scoreTeam2) => {
+  if (scoreTeam1 !== undefined) {
+    if (scoreTeam1 > scoreTeam2) {
+      return "green";
+    } else if (scoreTeam1 < scoreTeam2) {
+      return "red";
+    } else if (scoreTeam1 === scoreTeam2) {
+      return "orange";
     }
-  };
+  }
+};
+
+function Results({ results }) {
   return (
     <table className="table">
       <thead>
@@ -26,7 +27,7 @@ function Results({ soccerResults }) {
         </tr>
       </thead>
       <tbody>
-        {soccerResults.map((event) => {
+        {results.map((event) => {
           const homeTeam = event.sport_event.competitors[0].name; // check for qualifier Home or Away
           const awayTeam = event.sport_event.competitors[1].name; // check for qualifier Home or Away
           const homeScore = event.sport_event_status.home_score;
@@ -40,9 +41,9 @@ function Results({ soccerResults }) {
                 secondHalf: `${event.sport_event_status.period_scores?.[1].home_score} - ${event.sport_event_status.period_scores?.[1].away_score}`,
               }
             : null;
-          const stadiumName = event.sport_event.venue.name;
+          const stadiumName = event.sport_event.venue?.name;
           return (
-            <tr>
+            <tr key={event.sport_event.id}>
               <td
                 style={{
                   backgroundColor: getBackgroundColor(homeScore, awayScore),
@@ -64,8 +65,7 @@ function Results({ soccerResults }) {
               <td>
                 {halfTimeScore !== null ? (
                   <>
-                    <p>First Half: {halfTimeScore.firstHalf}</p>
-                    <p>Second Half: {halfTimeScore.secondHalf}</p>
+                    {halfTimeScore.firstHalf} | {halfTimeScore.secondHalf}
                   </>
                 ) : (
                   ""

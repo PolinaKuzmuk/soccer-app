@@ -1,12 +1,25 @@
-async function getSoccerResults() {
-  const options = { method: "GET", headers: { accept: "application/json" } };
+const API_KEY = "xnED3B492F2rdbco17yEj9CXYCOYBaCJa3B0kf9y";
 
-  return await fetch(
-    "/api/soccer/trial/v4/en/seasons/sr%3Aseason%3A93741/schedules.json?api_key=xnED3B492F2rdbco17yEj9CXYCOYBaCJa3B0kf9y",
-    options
-  )
-    .then((response) => response.json())
-    .catch((err) => console.error(err));
-}
+export default {
+  getSoccerResults: async (season) => {
+    const options = { method: "GET", headers: { accept: "application/json" } };
 
-export default getSoccerResults;
+    return await fetch(
+      `/api/soccer/trial/v4/en/seasons/${season}/schedules.json?api_key=${API_KEY}`,
+      options
+    )
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+  },
+
+  getSeasons: async () => {
+    const options = { method: "GET", headers: { accept: "application/json" } };
+
+    return await fetch(
+      `/api/soccer/trial/v4/en/competitions/sr%3Acompetition%3A7/seasons.json?api_key=${API_KEY}`,
+      options
+    )
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+  },
+};

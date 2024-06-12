@@ -1,19 +1,25 @@
 import "./App.css";
 import Results from "./components/Results/Results";
-import getSoccerResults from "./services/Api.js";
+import Seasons from "./components/Seasons/Seasons.jsx";
+import Api from "./services/Api.js";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [soccerResults, setSoccerResults] = useState([]);
+  const [results, setResults] = useState([]);
+  const [activeSeason, setActiveSeason] = useState("sr:season:83926");
 
   useEffect(() => {
-    getSoccerResults().then((res) => setSoccerResults(res.schedules));
-  }, []);
+    Api.getSoccerResults(activeSeason).then((res) => setResults(res.schedules));
+  }, [activeSeason]);
 
   return (
     <div className="App container-fluid">
       <h1>Soccer Results</h1>
-      <Results soccerResults={soccerResults}></Results>
+      <Results results={results}></Results>
+      <Seasons
+        activeSeason={activeSeason}
+        setActiveSeason={setActiveSeason}
+      ></Seasons>
     </div>
   );
 }
