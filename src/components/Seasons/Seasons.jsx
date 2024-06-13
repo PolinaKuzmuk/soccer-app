@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Api from "../../services/Api";
 
-function Seasons({ activeSeason, setActiveSeason }) {
+const Seasons = ({ setLoading, activeSeason, setActiveSeason }) => {
   const [seasons, setSeasons] = useState([]);
 
   const handleClick = (id) => {
-    console.log(id);
     setActiveSeason(id);
   };
 
   useEffect(() => {
-    Api.getSeasons().then((res) => setSeasons(res.seasons));
+    Api.getSeasons().then((res) => {
+      setSeasons(res.seasons);
+      setActiveSeason(res.seasons[0].id);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="btn-group" key="season">
+    <div className="btn-group">
       <button
         className="btn btn-secondary btn-lg dropdown-toggle"
         type="button"
@@ -33,7 +36,10 @@ function Seasons({ activeSeason, setActiveSeason }) {
                 }`}
                 type="button"
                 aria-current={activeSeason === season.id ? "true" : "false"}
-                onClick={() => handleClick(season.id)}
+                onClick={() => {
+                  setLoading(true);
+                  handleClick(season.id);
+                }}
               >
                 {season.name}
               </button>
@@ -43,6 +49,6 @@ function Seasons({ activeSeason, setActiveSeason }) {
       </ul>
     </div>
   );
-}
+};
 
 export default Seasons;
