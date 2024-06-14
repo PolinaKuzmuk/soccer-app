@@ -32,7 +32,7 @@ const Results = ({
         <Spinner />
       ) : (
         <>
-          <h1>Soccer Results</h1>
+          <h1 className="title">Soccer Results</h1>
           <table className="table table-striped table-hover">
             <thead className="table-dark">
               <tr>
