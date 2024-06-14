@@ -1,4 +1,4 @@
-import utils from "../../utils/utils";
+import utils from "../utils/utils";
 
 const eventTypes = [
   "match_started",
@@ -8,9 +8,6 @@ const eventTypes = [
   "yellow_red_card",
   "possible_goal",
 ];
-
-// error handling 404
-// test react
 
 const DetailedMatchInfo = ({ matchInfo }) => {
   const homeTeamName = utils.defineHomeAwayTeam(

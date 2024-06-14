@@ -1,7 +1,31 @@
-import Spinner from "../Spinner/Spinner";
-import utils from "../../utils/utils";
+import { useEffect } from "react";
+import Spinner from "./Spinner";
+import utils from "../utils/utils";
+import Api from "../services/Api";
 
-const Results = ({ loading, results }) => {
+const Results = ({
+  setError,
+  loading,
+  setLoading,
+  results,
+  setResults,
+  activeSeason,
+}) => {
+  useEffect(() => {
+    if (activeSeason.length !== 0) {
+      Api.getSoccerResults(activeSeason)
+        .then((res) => {
+          setResults(res.schedules);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(true);
+          console.error(err);
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSeason]);
+
   return (
     <div>
       {loading ? (

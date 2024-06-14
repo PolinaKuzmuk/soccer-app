@@ -1,11 +1,9 @@
 const utils = {
   defineHomeAwayTeam: (competitors, qualifier) => {
-    return competitors.map((team) => {
-      if (team.qualifier === qualifier) {
-        return team.name;
-      }
-      return null;
-    });
+    const filteredTeam = competitors.filter(
+      (team) => team.qualifier === qualifier
+    );
+    return filteredTeam[0].name;
   },
 
   getBackgroundColor: (scoreTeam1, scoreTeam2) => {
@@ -18,11 +16,16 @@ const utils = {
         return "orange";
       }
     }
+    return "inherit";
   },
 
   extractMatchId: (string) => {
     const parts = string.split(":");
     return parts[parts.length - 1];
+  },
+
+  refreshPage: () => {
+    window.location.reload();
   },
 };
 
